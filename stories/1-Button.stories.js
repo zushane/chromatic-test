@@ -18,7 +18,7 @@ const Template = ({ onClick, children }) => {
 
 export const Text = Template.bind({});
 Text.args = {
-  children: 'Butt-on',
+  children: 'xxxxButt-on',
   onClick: action('onClick'),
 };
 
