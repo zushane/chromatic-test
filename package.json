@@ -1,5 +1,5 @@
 {
-  "name": "chromatic-test",
+  "name": "storybook-test",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,6 +12,7 @@
     "@storybook/addon-essentials": "^6.0.27",
     "@storybook/addon-links": "^6.0.27",
     "@storybook/html": "^6.0.27",
+    "@storybook/storybook-deployer": "^2.8.7",
     "babel-loader": "^8.1.0",
     "react-is": "^17.0.1"
   },
@@ -19,7 +20,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token v58xskdd7nn"
+    "deploy-storybook": "storybook-to-aws-s3 --bucket-path=storybook-test-dev.zu.com/"
   },
   "keywords": [],
   "author": "",

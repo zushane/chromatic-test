@@ -2,6 +2,13 @@
 
 ## Simple setup instructions
 
+### Initialize the storybook if needed.
+```
+npx -p @storybook/cli sb init
+npm i @storybook/storybook-deployer --save-dev
+
+```
+
 ### Install the required packages
 ```
 npm install
@@ -12,7 +19,11 @@ npm install
 npm run storybook
 ```
 
+### Build Storybook as a static web app
+```
+npm run build-storybook
+```
 ### Publish the storybook
 ```
-TBD
+npm run deploy-storybook
 ```

@@ -1,3 +1,4 @@
 /node_modules
 .DS_Store
 *.log
+s3-access-keys.txt

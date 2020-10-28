@@ -1,0 +1,20 @@
+{
+  "Id": "Policy1603831519746",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "Stmt1603831478862",
+      "Action": [
+        "s3:GetObject"
+      ],
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::storybook-test-dev.zu.com/*",
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": "64.141.36.162"
+        }
+      },
+      "Principal": "*"
+    }
+  ]
+}
