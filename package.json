@@ -20,7 +20,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "deploy-storybook": "storybook-to-aws-s3 --bucket-path=storybook-test-dev.zu.com/"
+    "publish-storybook": "storybook-to-aws-s3 --bucket-path=storybook-test-dev.zu.com/"
   },
   "keywords": [],
   "author": "",

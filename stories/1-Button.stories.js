@@ -24,7 +24,7 @@ Text.args = {
 
 export const Emoji = Template.bind({});
 Emoji.args = {
-  children: '🚨 🌮 ✅ 🤣',
+  children: '🚨 🌮 ✅ 🤣 👎',
 };
 
 export const TextWithAction = () => {
