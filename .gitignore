@@ -2,3 +2,5 @@
 .DS_Store
 *.log
 s3-access-keys.txt
+storybook-static
+.env
