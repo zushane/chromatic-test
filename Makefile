@@ -18,6 +18,13 @@ help : Makefile
 ##   Tasks to install appropriate node modules.
 ##
 
+## init               :   Initialize a new storybook.
+.PHONY: init
+init:
+	@echo "Initializing a new storybook for $(PROJECT_NAME)."
+	npx -p @storybook/cli sb init
+	npm i @storybook/storybook-deployer --save-dev
+
 ## setup              :   Install modules from package.json
 .PHONY: setup
 setup: 

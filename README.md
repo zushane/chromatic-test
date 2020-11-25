@@ -4,26 +4,25 @@
 
 ### Initialize the storybook if needed.
 ```
-npx -p @storybook/cli sb init
-npm i @storybook/storybook-deployer --save-dev
-
+make init
 ```
 
 ### Install the required packages
 ```
-npm install
+make setup
 ```
 
 ### Start storybook
 ```
-npm run storybook
+make run_storybook
 ```
 
 ### Build Storybook as a static web app
 ```
-npm run build-storybook
+make build_storybook
 ```
+
 ### Publish the storybook
 ```
-npm run deploy-storybook
+make publish_storybook
 ```
