@@ -5,7 +5,7 @@ pipeline {
         PROJECT_NAME = "storybook_test"
         PROJECT_PATH_TO_STORYBOOK = "./storybook-static"
         AWSCLI_TAG = "2.6.0"
-        AWSCLI_PROFILE = ${PROJECT_NAME}
+        AWSCLI_PROFILE = "${PROJECT_NAME}"
     }
 
     stage('Build storybook') {
