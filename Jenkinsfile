@@ -8,18 +8,20 @@ pipeline {
         AWSCLI_PROFILE = "${PROJECT_NAME}"
     }
 
-    stage('Build storybook') {
-        steps {
-           sh 'make build_storybook' 
+    stages {
+        stage('Build storybook') {
+            steps {
+               sh 'make build_storybook' 
+            }
         }
+    
+        stage('Publish storybook') {
+            steps {
+                sh 'make publish_storybook'
+            }
+        }    
+    
     }
-
-    stage('Publish storybook') {
-        steps {
-            sh 'make publish_storybook'
-        }
-    }    
-
     post {
         success {
             slackSend channel: "${SLACK_CHANNEL}", color: "good", message: ":book: StoryBook for ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. Please view using VPN or in-office network.\n http://storybook-test-dev.zu.com.s3website-us-west-2.amazonaws.com/${env.BRANCH_NAME}/."
