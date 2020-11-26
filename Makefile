@@ -28,7 +28,7 @@ help : Makefile
 
 ## docker_pull          :   Pull required docker containers.
 .PHONY: docker_pull
-docker_pull_
+docker_pull:
 	@echo "Pulling docker containers for $(PROJECT_NAME)."
 	@docker-compose pull
 
