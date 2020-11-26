@@ -7,6 +7,7 @@ pipeline {
         NODE_TAG = "lts"
         AWSCLI_TAG = "2.1.3"
         AWSCLI_PROFILE = "${PROJECT_NAME}"
+        AWSCLI_S3_BUCKET = "storybook-test-dev.zu.com"
     }
 
     stages {
