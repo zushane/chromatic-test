@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         SLACK_CHANNEL = "#test-private"
-        PROJECT_NAME = "storybook_test"
+        PROJECT_NAME = "storybook-test"
         PROJECT_PATH_TO_STORYBOOK = "/var/www/html/storybook-static"
         NODE_TAG = "lts"
         AWSCLI_TAG = "2.1.3"
