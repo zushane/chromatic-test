@@ -9,9 +9,9 @@ pipeline {
     }
 
     stages {
-        stage('Initialize node for Storybook') {
+        stage('Set up node for Storybook') {
             steps {
-                sh 'make init'
+                sh 'make setup'
             }
         }
         stage('Build storybook') {
