@@ -5,7 +5,7 @@ pipeline {
         PROJECT_NAME = "storybook_test"
         PROJECT_PATH_TO_STORYBOOK = "/var/www/html/storybook-static"
         NODE_TAG = "lts"
-        AWSCLI_TAG = "2.6.0"
+        AWSCLI_TAG = "2.1.3"
         AWSCLI_PROFILE = "${PROJECT_NAME}"
     }
 
