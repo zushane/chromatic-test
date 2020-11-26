@@ -1,6 +1,14 @@
-include .env
+# only include .env if it exists.
+ifneq (,$(wildcard ./.env))
+	dropped := $(info Found .env, loading.)
+	include .env
+	export
+else 
+	dropped := $(info No .env file found, assuming environment variables loaded elsewhere.)
+endif
 
 .DEFAULT_GOAL := help
+BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 
 ## 
 ## STORYBOOK-TEST
@@ -51,5 +59,7 @@ build_storybook:
 ## publish_storybook  :   Publishes the storybook to AWS S3.
 .PHONY: publish_storybook
 publish_storybook:
-	@echo "Publish storybook for $(PROJECT_NAME) to $(AWSCLI_S3_PATH)."
+	@echo "Publish storybook for $(PROJECT_NAME) at branch $(BRANCH) to $(AWSCLI_S3_PATH)."
+	aws --profile $(AWSCLI_PROFILE) s3api put-object --bucket $(AWSCLI_S3_BUCKET) --key $(BRANCH)
+	aws --profile $(AWSCLI_PROFILE) s3 sync $(PROJECT_PATH_TO_STORYBOOK) s3://$(AWSCLI_S3_BUCKET)/$(BRANCH)
 #    awscli --profile $(AWSCLI_PROFILE) s3 sync /var/www/html/storybook-static/ s3://$(AWSCLI_S3_PATH)/
