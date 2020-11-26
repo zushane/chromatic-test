@@ -9,6 +9,11 @@ pipeline {
     }
 
     stages {
+        stage('Initialize node for Storybook') {
+            steps {
+                sh 'make init'
+            }
+        }
         stage('Build storybook') {
             steps {
                sh 'make build_storybook' 
