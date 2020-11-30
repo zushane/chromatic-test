@@ -34,11 +34,13 @@ pipeline {
             }
         }
     
+/*
         stage('Publish storybook') {
             steps {
-//                sh 'make publish_storybook'
+                sh 'make publish_storybook'
             }
         }    
+*/
     
     }
     post {
