@@ -38,11 +38,11 @@ pipeline {
     }
     post {
         success {
-            slackSend channel: "${SLACK_CHANNEL}", color: "good", message: ":book: StoryBook for ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. Please view using VPN or in-office network.\n http://storybook-test-dev.zu.com.s3website-us-west-2.amazonaws.com/${env.BRANCH_NAME}/."
+            echo "StoryBook for ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. Please view using VPN or in-office network.\n http://storybook-test-dev.zu.com.s3website-us-west-2.amazonaws.com/${env.BRANCH_NAME}/."
         }
 
         failure {
-            slackSend channel: "${SLACK_CHANNEL}", color: "bad", message: ":x: ${repo_label} - Failed to build ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. (<${env.RUN_DISPLAY_URL}|Open>)"
+            echo "${repo_label} - Failed to build ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. (${env.RUN_DISPLAY_URL})"
         }
 
         always {
