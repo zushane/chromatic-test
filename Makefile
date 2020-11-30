@@ -34,7 +34,7 @@ help : Makefile
 ## docker_pull          :   Pull required docker containers.
 .PHONY: docker_pull
 docker_pull:
-	@echo "Pulling docker containers for $(PROJECT_NAME)."
+	@echo "Pulling docker containers for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	@docker-compose pull
 
 ## docker_prune       :     Remove all containers and their volumes.
@@ -42,20 +42,20 @@ docker_pull:
 ##                              prune node : Prune `node` container and remove its volumes
 .PHONY: docker_prune
 docker_prune:
-	@echo "Removing containers for $(PROJECT_NAME)."
+	@echo "Removing containers for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	@docker-compose down -v $(filter-out $@,$(MAKECMDGOALS))
 
 ## init               :   Initialize a new storybook.
 .PHONY: init
 init:
-	@echo "Initializing a new storybook for $(PROJECT_NAME)."
+	@echo "Initializing a new storybook for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	docker-compose run node npx -p @storybook/cli sb init
 	docker-compose run node npm i @storybook/storybook-deployer --save-dev
 
 ## setup              :   Install modules from package.json.
 .PHONY: setup
 setup: 
-	@echo "Installing modules from package.json for $(PROJECT_NAME)."
+	@echo "Installing modules from package.json for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	docker-compose run node npm install
 
 ## 
@@ -66,13 +66,13 @@ setup:
 ## run_storybook      :   Runs a local webserver to preview the storybook
 .PHONY: run_storybook
 run_storybook:
-	@echo "Running local web server storybook preview for $(PROJECT_NAME)."
+	@echo "Running local web server storybook preview for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	docker-compose run node npm run storybook
 
 ## build_storybook    :   Builds the storybook's static site. 
 .PHONY: build_storybook
 build_storybook:
-	@echo "Building storybook for $(PROJECT_NAME)."
+	@echo "Building storybook for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	docker-compose run node npm run build-storybook
 
 ## publish_storybook  :   Publishes the storybook to AWS S3.
