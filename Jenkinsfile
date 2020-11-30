@@ -11,6 +11,11 @@ pipeline {
     }
 
     stages {
+        stage('What\'s the env, Kenneth?') {
+            steps {
+                sh 'printenv'
+            }
+        }
         stage('Pull docker containers.') {
             steps {
                 sh 'make docker_pull'
@@ -31,7 +36,7 @@ pipeline {
     
         stage('Publish storybook') {
             steps {
-                sh 'make publish_storybook'
+//                sh 'make publish_storybook'
             }
         }    
     
