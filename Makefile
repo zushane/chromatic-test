@@ -7,8 +7,12 @@ else
 	dropped := $(info No .env file found, assuming environment variables loaded elsewhere.)
 endif
 
+ifndef BRANCH_NAME
+	BRANCH_NAME:= $(shell git rev-parse --abbrev-ref HEAD)
+endif
+
+
 .DEFAULT_GOAL := help
-BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 
 ## 
 ## STORYBOOK-TEST
@@ -20,6 +24,7 @@ BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 ## help               :   Display this helpful instructional text.
 help : Makefile 
 	@sed -n 's/^##//p' $<
+	@echo "\n Currently on branch: $(BRANCH_NAME)"
 
 ##
 ## ENVIRONMENT
@@ -73,7 +78,7 @@ build_storybook:
 ## publish_storybook  :   Publishes the storybook to AWS S3.
 .PHONY: publish_storybook
 publish_storybook:
-	@echo "Publish storybook for $(PROJECT_NAME) at branch $(BRANCH) to $(AWSCLI_S3_PATH)."
-	docker-compose run awscli --profile $(AWSCLI_PROFILE) s3api put-object --bucket $(AWSCLI_S3_BUCKET) --key $(BRANCH)
-	docker-compose run awscli --profile $(AWSCLI_PROFILE) s3 sync $(PROJECT_PATH_TO_STORYBOOK) s3://$(AWSCLI_S3_BUCKET)/$(BRANCH)
+	@echo "Publish storybook for $(PROJECT_NAME) at branch $(BRANCH_NAME) to $(AWSCLI_S3_PATH)."
+	docker-compose run awscli --profile $(AWSCLI_PROFILE) s3api put-object --bucket $(AWSCLI_S3_BUCKET) --key $(BRANCH_NAME)
+	docker-compose run awscli --profile $(AWSCLI_PROFILE) s3 sync $(PROJECT_PATH_TO_STORYBOOK) s3://$(AWSCLI_S3_BUCKET)/$(BRANCH_NAME)
 #    awscli --profile $(AWSCLI_PROFILE) s3 sync /var/www/html/storybook-static/ s3://$(AWSCLI_S3_PATH)/
