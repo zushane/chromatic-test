@@ -38,7 +38,7 @@ pipeline {
     }
     post {
         success {
-            echo "StoryBook for ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. Please view using VPN or in-office network.\n http://storybook-test-dev.zu.com.s3website-us-west-2.amazonaws.com/${env.BRANCH_NAME}/."
+            echo "StoryBook for ${PROJECT_NAME} on branch ${env.BRANCH_NAME}. Please view using VPN or in-office network.\n http://storybook-test-dev.zu.com.s3-website-us-west-2.amazonaws.com/${env.BRANCH_NAME}/."
         }
 
         failure {
