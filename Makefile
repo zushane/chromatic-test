@@ -24,7 +24,7 @@ endif
 ## help               :   Display this helpful instructional text.
 help : Makefile 
 	@sed -n 's/^##//p' $<
-	@echo "\n Currently on branch: $(BRANCH_NAME)"
+	@echo "\n Currently on branch: $(BRANCH_NAME)."
 
 ##
 ## ENVIRONMENT
