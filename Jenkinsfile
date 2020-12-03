@@ -17,9 +17,9 @@ pipeline {
             }
         }
 
-        stage('Set up node for Storybook') {
+        stage('Node package installation') {
             steps {
-                sh 'make setup'
+                sh 'make npm_install'
             }
         }
 

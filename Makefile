@@ -45,16 +45,9 @@ docker_prune:
 	@echo "Removing containers for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	@docker-compose down -v $(filter-out $@,$(MAKECMDGOALS))
 
-## init               :   Initialize a new storybook.
-.PHONY: init
-init:
-	@echo "Initializing a new storybook for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
-	docker-compose run node npx -p @storybook/cli sb init
-	docker-compose run node npm i @storybook/storybook-deployer --save-dev
-
-## setup              :   Install modules from package.json.
-.PHONY: setup
-setup: 
+## npm_install        :   Install modules from package.json.
+.PHONY: npm_install
+npm_install: 
 	@echo "Installing modules from package.json for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
 	docker-compose run node npm install
 
@@ -62,6 +55,13 @@ setup:
 ## STORYBOOK
 ##   Tasks to build and publish the demo storybook
 ##
+
+## init_storybook     :   Initialize a new storybook.
+.PHONY: init_storybook
+init_storybook:
+	@echo "Initializing a new storybook for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
+	docker-compose run node npx -p @storybook/cli sb init
+	docker-compose run node npm i @storybook/storybook-deployer --save-dev
 
 ## run_storybook      :   Runs a local webserver to preview the storybook
 .PHONY: run_storybook
