@@ -1,0 +1,24 @@
+  # AWS-CLI is configured here so it can be started to run specific commands. 
+  # On docker-compose up, this container does not start a service, and will 
+  # exit immediately. 
+  awscli:
+    image: amazon/aws-cli:$AWSCLI_TAG
+    container_name: "${PROJECT_NAME}_awscli"
+    volumes:
+        - ./:/var/www/html:cached
+        - ~/.aws:/root/.aws:cached
+
+  # Node is configured here so it can be started to run specific commands. On
+  # docker-compose up, this container does not start a service, and will exit
+  # immediately.
+  node:
+    image: node:$NODE_TAG
+    container_name: "${PROJECT_NAME}_node"
+    working_dir: /var/www/html
+    expose:
+      - "3000"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/var/www/html:cached
+
