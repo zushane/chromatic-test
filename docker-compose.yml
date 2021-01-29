@@ -16,9 +16,9 @@
     container_name: "${PROJECT_NAME}_node"
     working_dir: /var/www/html
     expose:
-      - "3000"
+      - "6006"
     ports:
-      - "3000:3000"
+      - "6006:6006"
     volumes:
       - ./:/var/www/html:cached
 

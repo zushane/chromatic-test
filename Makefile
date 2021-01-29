@@ -31,7 +31,7 @@ help : Makefile
 ##   Tasks to install appropriate node modules.
 ##
 
-## docker_pull          :   Pull required docker containers.
+## docker_pull        :   Pull required docker containers.
 .PHONY: docker_pull
 docker_pull:
 	@echo "Pulling docker containers for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
@@ -49,7 +49,8 @@ docker_prune:
 .PHONY: npm_install
 npm_install: 
 	@echo "Installing modules from package.json for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
-	docker-compose run node npm install
+#	docker-compose run node npm install
+	node npm install
 
 ## 
 ## STORYBOOK
@@ -67,7 +68,8 @@ init_storybook:
 .PHONY: run_storybook
 run_storybook:
 	@echo "Running local web server storybook preview for $(PROJECT_NAME) on branch $(BRANCH_NAME)."
-	docker-compose run node npm run storybook
+#	docker-compose run node npm run storybook
+	npm run storybook
 
 ## build_storybook    :   Builds the storybook's static site. 
 .PHONY: build_storybook
@@ -78,7 +80,12 @@ build_storybook:
 ## publish_storybook  :   Publishes the storybook to AWS S3.
 .PHONY: publish_storybook
 publish_storybook:
-	@echo "Publish storybook for $(PROJECT_NAME) at branch $(BRANCH_NAME) to $(AWSCLI_S3_PATH)."
+	@echo "Publish storybook for $(PROJECT_NAME) at branch $(BRANCH_NAME) to $(AWSCLI_S3_BUCKET)."
 	docker-compose run awscli --profile $(AWSCLI_PROFILE) s3api put-object --bucket $(AWSCLI_S3_BUCKET) --key $(BRANCH_NAME)
 	docker-compose run awscli --profile $(AWSCLI_PROFILE) s3 sync $(PROJECT_PATH_TO_STORYBOOK) s3://$(AWSCLI_S3_BUCKET)/$(BRANCH_NAME)
+	@echo ""
+	@echo "The storybook should now be available at:"
+	@echo ""
+	@echo "     http://$(AWSCLI_S3_BUCKET).s3-website-us-west-2.amazonaws.com/$(BRANCH_NAME)/"
+	@echo ""
 #    awscli --profile $(AWSCLI_PROFILE) s3 sync /var/www/html/storybook-static/ s3://$(AWSCLI_S3_PATH)/
